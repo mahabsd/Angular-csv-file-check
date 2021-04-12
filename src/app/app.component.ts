@@ -13,14 +13,17 @@ export class AppComponent {
    * on file drop handler
    */
   onFileDropped($event) {
+    console.log($event.target.files[0]);
     this.prepareFilesList($event);
   }
 
   /**
    * handle file from browsing
    */
-  fileBrowseHandler(files) {
-    this.prepareFilesList(files);
+  fileBrowseHandler(event) {
+    console.log(event.target.files[0]);
+    
+    this.prepareFilesList(event.target.files);
   }
 
   /**
