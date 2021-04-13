@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
+import { FileService } from "./services/fileUpload.service";
 
 @Component({
   selector: "app-root",
@@ -8,7 +9,12 @@ import { Component, ViewChild, ElementRef } from "@angular/core";
 export class AppComponent {
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
   files: any[] = [];
+  file: File;
+  formData: any;
 
+  constructor(private fileService : FileService){
+
+  }
   /**
    * on file drop handler
    */
@@ -21,8 +27,12 @@ export class AppComponent {
    * handle file from browsing
    */
   fileBrowseHandler(event) {
-    console.log(event.target.files[0]);
-    
+    this.formData = new FormData();
+    if (event.target.value) {
+      this.file = <File>event.target.files[0];
+      this.formData.append('file', this.file, this.file.name);
+    }
+    this.fileService.addFile(this.formData).subscribe(res => console.log(res))
     this.prepareFilesList(event.target.files);
   }
 
