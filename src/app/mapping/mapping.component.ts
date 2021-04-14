@@ -7,17 +7,18 @@ import { MappingServices } from '../services/mapping.service';
   styleUrls: ['./mapping.component.scss']
 })
 export class MappingComponent implements OnInit {
-  founded :any[]
-  confirmedFounded = ["yess1", "yess2", "yess3"]
+  founded: any[];
+  notFounded: any[];
+  possibleChoices :any[];
+  confirmedFounded = ["yess1", "yess2", "yess3"];
 
   constructor(private mappingService : MappingServices) {
-   }
+  }
 
   ngOnInit() {
     this.founded = this.mappingService.foundedValue
     console.log(this.founded);
+    this.notFounded = this.mappingService.notFoundedValue
   }
-
-
 
 }

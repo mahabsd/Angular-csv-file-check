@@ -1,8 +1,42 @@
 <a class="btn btn-primary" routerLink="/">Home page</a>
 
 
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Header</th>
+        <th scope="col">Confirm</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let found of founded[0]; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{found}}</td>
+        <td><button class="btn btn-success"> Confirm </button></td>
+        <td><button class="btn btn-warning">Change it</button></td>
+      </tr>
+    </tbody>
+  </table>
 
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let found of founded[0]" >{{found}}<button class="btn btn-success"> Confirm </button> <button class="btn btn-warning">Change it</button></li>
-  </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Header</th>
+        <th scope="col">Confirm</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let notFound of notFounded[0]; let i = index" >
+        <th scope="row">{{i+1}}</th>
+        <td >{{notFound}}</td>
+        <td><Select>the option</Select></td>
+        <td><button class="btn btn-success" disabled>Confirm</button></td>
+      </tr>
+    </tbody>
+  </table>
 
+  <button class="btn btn-success" disabled>Confirmer</button>
