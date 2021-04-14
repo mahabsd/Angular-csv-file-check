@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MappingServices } from '../services/mapping.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class MappingComponent implements OnInit {
   confirmedFounded = ["yess1", "yess2", "yess3"]
 
   constructor(private mappingService : MappingServices) {
-    this.founded = this.mappingService.foundedValue
    }
 
   ngOnInit() {
     this.founded = this.mappingService.foundedValue
+    console.log(this.founded);
   }
+
+
 
 }
