@@ -42,7 +42,11 @@ export class MainComponent {
       console.log(res.tab4)
       this.MyObject = res
       // console.log("et voila les valeur trouver : " + JSON.parse(JSON.stringify(this.MyObject)));
-      this.mappingService.addFounded(this.MyObject)});
+      this.mappingService.allData(this.MyObject.excelJson);
+      this.mappingService.headerData(this.MyObject.excelJson[0]);
+      this.mappingService.foundedData(this.MyObject.tab3);
+      this.mappingService.notFoundedData(this.MyObject.tab4);
+    });
     this.prepareFilesList(event.target.files);
   }
 
