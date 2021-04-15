@@ -1,0 +1,33 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Header</th>
+            <th scope="col">update</th>
+            <th scope="col">delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let colHeader of model; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{colHeader.colHeader}}</td>
+            <td><button class="btn btn-success" (click)= "show = true"> update </button>
+                <form action="" [formGroup]="modelform" *ngIf="show" >
+                    <input type="text" placeholder="update column header" formControlName="colHeader">
+                    <button (click)="update(colHeader._id, modelform.value)" class="btn btn-primary">
+                        update column header
+                    </button>
+                </form>
+            </td>
+            <td><button class="btn btn-warning"(click)= "delete(colHeader._id)"> delete </button></td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <form action="" [formGroup]="modelform">
+        <input type="text" placeholder="add new column header" formControlName="colHeader">
+        <button (click)="add(modelform.value)" class="btn btn-primary">
+            add new column header
+        </button>
+    </form>
+</div>

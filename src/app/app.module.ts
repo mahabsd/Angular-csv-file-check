@@ -9,10 +9,14 @@ import { MappingComponent } from './mapping/mapping.component';
 import { MappingServices } from './services/mapping.service';
 import { MainComponent } from './main/main.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ModelComponent } from './model/model.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path:'' , component: MainComponent },
-  { path:'mapping-phase' , component: MappingComponent }
+  { path:'mapping-phase' , component: MappingComponent },
+  { path:'model' , component: ModelComponent }
 ]
 
 @NgModule({
@@ -21,12 +25,16 @@ const appRoutes: Routes = [
     DndDirective,
     ProgressComponent,
     MappingComponent,
-    MainComponent
+    MainComponent,
+    NavbarComponent,
+    ModelComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [MappingServices],
   bootstrap: [AppComponent]

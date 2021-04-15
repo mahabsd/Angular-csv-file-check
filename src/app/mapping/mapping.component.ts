@@ -19,6 +19,10 @@ export class MappingComponent implements OnInit {
     this.founded = this.mappingService.foundedValue
     console.log(this.founded);
     this.notFounded = this.mappingService.notFoundedValue
+    
   }
+  // getModel() {
+  //   this.modelService.getAllModels().subscribe(res => this.model = res)
+  // }
 
 }
