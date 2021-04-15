@@ -36,7 +36,7 @@ export class MainComponent {
       this.formData.append('file', this.file, this.file.name);
     }
     // reception des données du back
-    this.fileService.addFile(this.formData).subscribe((res :({excelJson: object , tab3: string[], tab4: string[]  })) => {
+    this.fileService.addFile(this.formData).subscribe((res :({excelJson: object , tab3: string[], tab4: string[], models: string[]})) => {
       console.log(res.excelJson[0])
       console.log(res.tab3)
       console.log(res.tab4)
@@ -46,6 +46,7 @@ export class MainComponent {
       this.mappingService.headerData(this.MyObject.excelJson[0]);
       this.mappingService.foundedData(this.MyObject.tab3);
       this.mappingService.notFoundedData(this.MyObject.tab4);
+      this.mappingService.reqData(this.MyObject.models);
     });
     this.prepareFilesList(event.target.files);
   }

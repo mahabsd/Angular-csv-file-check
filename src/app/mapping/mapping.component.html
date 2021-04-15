@@ -1,5 +1,7 @@
-<a class="btn btn-primary" routerLink="/">Home page</a>
-<a class="btn btn-dark" routerLink="/model">Model manager</a>
+<a class="btn btn-info col-6"  routerLink="/">Home page</a>
+<a class="btn btn-primary col-6" routerLink="/model">Expensya</a>
+
+<div>
 
 
   <table class="table table-striped">
@@ -26,18 +28,35 @@
       <tr>
         <th scope="col">N°</th>
         <th scope="col">Header</th>
-        <th scope="col">Confirm</th>
-        <th scope="col">Edit</th>
+        <th scope="col">Choose</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let notFound of notFounded[0]; let i = index" >
+      <tr *ngFor="let notFound of notFounded[0]; let i = index">
         <th scope="row">{{i+1}}</th>
-        <td >{{notFound}}</td>
-        <td><Select>the option</Select></td>
-        <td><button class="btn btn-success" disabled>Confirm</button></td>
+        <td>{{notFound}}</td>
+        <td>
+
+          <div class="input-group">
+            <select class="custom-select" id="inputGroupSelect04">
+              <option selected>Choose...</option>
+              <option [value]="possible" *ngFor="let possible of possibleChoices">{{possible}}</option>
+              <option value="other">other</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button">Confirm</button>
+            </div>
+          </div>
+        </td>
+
       </tr>
     </tbody>
   </table>
 
-  <button class="btn btn-success" disabled>Confirmer</button>
+  <button class="btn btn-success col-12" disabled>Confirmer</button>
+</div>
+
+
+
+
+

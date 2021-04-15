@@ -24,4 +24,7 @@ export class ModelService {
   getAllModels() {
     return this.http.get(this.ModelsUrl + "model/getModel");
   }
+
+
+  
 }
