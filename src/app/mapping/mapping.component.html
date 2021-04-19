@@ -21,6 +21,34 @@
         <td><button class="btn btn-warning">Change it</button></td>
       </tr>
     </tbody>
+
+  </table>
+  <hr>
+
+  <p>les proposition</p>
+  <table>
+
+    <thead>
+      <tr>
+        <th scope="col">your word</th>
+        <th scope="col">the proposition</th>
+        <th scope="col">similarity</th>
+        <th scope="col">confirmed</th>
+        <th scope="col">change it</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prop of fuzzyArray; let i = index">
+
+          <td>{{prop.world}}</td>
+          <td>{{prop.proposition}}</td>
+          <td>{{ prop.sim }} %</td>
+          <td><button class="btn btn-success"> Confirm </button></td>
+          <td><button class="btn btn-warning">Change it</button></td>
+
+      </tr>
+
+
   </table>
 
   <table class="table">
