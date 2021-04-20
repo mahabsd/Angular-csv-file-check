@@ -9,9 +9,6 @@
       <tr>
         <th scope="col">N°</th>
         <th scope="col">Header</th>
-        <th scope="col">% of conformity</th>
-        <th scope="col">Confirmed word with</th>
-
         <th scope="col">Confirm</th>
         <th scope="col">Edit</th>
       </tr>
@@ -23,13 +20,6 @@
         <th scope="row">{{i+1}}</th>
 
         <td>{{found}}</td>
-     
-        <td >
-          {{Max*100}}%
-        </td>
-    
-      
-        <td>{{MaxWord}}</td>
         <td><button class="btn btn-success"> Confirm </button></td>
         <td><button class="btn btn-warning">Change it</button></td>
       
@@ -42,26 +32,28 @@
       <tr>
         <th scope="col">N°</th>
         <th scope="col">Header</th>
-        <th scope="col">Choose</th>
+        <th scope="col">Matched word</th>
+        <th scope="col">% of matching</th>
+        <th scope="col">Confirm</th>
+        <th scope="col">Delete</th>
+
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let notFound of notFounded[0]; let i = index">
+      <tr *ngFor="let object of fuzzyArray; let i = index">
         <th scope="row">{{i+1}}</th>
-        <td>{{notFound}}</td>
-        <td>
-
-          <div class="input-group">
-            <select class="custom-select" id="inputGroupSelect04">
-              <option selected>Choose...</option>
-              <option [value]="possible" *ngFor="let possible of possibleChoices">{{possible}}</option>
-              <option value="other">other</option>
-            </select>
-            <div class="input-group-append">
+        <td>{{object.word}}</td>
+        <td>{{object.proposition}}</td>
+        <td>{{object.sim}}%</td>
+         <td >
               <button class="btn btn-success" type="button">Confirm</button>
-            </div>
-          </div>
+          </td>
+
+          <td >
+            <button class="btn btn-danger" type="button">Delete</button>
         </td>
+         
+        
 
       </tr>
     </tbody>
