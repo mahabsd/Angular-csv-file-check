@@ -10,11 +10,11 @@ import FuzzySet from 'fuzzyset.js'
   styleUrls: ['./mapping.component.scss']
 })
 export class MappingComponent implements OnInit {
-  founded: any[];
+  founded: string[];
   notFounded: any[];
   possibleChoices: any[];
 
-  fuzzyArray : {world:string, proposition:string, sim: any}[] = []
+  fuzzyArray : {word:string, proposition:string, sim: any}[] = []
   notFoundFuzzy = []
 
 
@@ -24,7 +24,6 @@ export class MappingComponent implements OnInit {
 
   ngOnInit() {
     this.founded = this.mappingService.foundedValue;
-    console.log(this.founded);
     this.notFounded = this.mappingService.notFoundedValue;
     this.possibleChoices = this.mappingService.reqValue;
 
@@ -33,10 +32,11 @@ export class MappingComponent implements OnInit {
       this.possibleChoices = this.mappingService.arrayRemove(this.possibleChoices, this.founded[0][i])
       // console.log("and the possible choices are know " + this.possibleChoices);
     }
-
     this.myFuzzyFunction()
-  }
 
+  }
+  
+  
 
   myFuzzyFunction(){
     console.log("my array of the possible choices");
@@ -47,7 +47,7 @@ export class MappingComponent implements OnInit {
       console.log(element);
       console.log("------------------------------------");
       var foundOne = false
-      var myObject : {world:string, proposition:string, sim: any} = {world:element, proposition:"", sim: 0}
+      var myObject : {word:string, proposition:string, sim: any} = {word:element, proposition:"", sim: 0}
       for (let i = 0; i < this.mappingService.reqValue.length; i++) {
 
         console.log("the possible choice know is :");
@@ -67,9 +67,9 @@ export class MappingComponent implements OnInit {
 
         }
 
-        else if (testedValue[0][0]> myObject.sim) {
+        else if ((testedValue[0][0]).toFixed(4)*100> myObject.sim) {
           var arrond = (testedValue[0][0]).toFixed(4) * 100
-          myObject = {world:element, proposition:testedValue[0][1], sim: arrond}
+          myObject = {word:element, proposition:testedValue[0][1], sim: arrond}
           console.log("my object know look like this :");
           console.log("***************************");
           console.log(myObject);
@@ -87,7 +87,10 @@ export class MappingComponent implements OnInit {
         console.log("nooooooooooooo i didn't found one");
         this.notFoundFuzzy.push(element)
       }
-
+   console.log(this.fuzzyArray);
+   console.log(this.notFoundFuzzy);
+   
+   
     });
 
   }
