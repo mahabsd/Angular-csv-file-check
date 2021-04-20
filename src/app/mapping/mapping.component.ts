@@ -1,5 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MappingServices } from '../services/mapping.service';
+import FuzzySet from 'fuzzyset.js'
+
+
 
 @Component({
   selector: 'app-mapping',
@@ -9,28 +12,84 @@ import { MappingServices } from '../services/mapping.service';
 export class MappingComponent implements OnInit {
   founded: any[];
   notFounded: any[];
-  possibleChoices :any[];
-  confirmedFounded = ["yess1", "yess2", "yess3"];
-  bla
+  possibleChoices: any[];
 
-  constructor(private mappingService : MappingServices) {
+  fuzzyArray : {world:string, proposition:string, sim: any}[] = []
+  notFoundFuzzy = []
+
+
+  constructor(private mappingService: MappingServices) {
   }
+
 
   ngOnInit() {
     this.founded = this.mappingService.foundedValue;
     console.log(this.founded);
     this.notFounded = this.mappingService.notFoundedValue;
     this.possibleChoices = this.mappingService.reqValue;
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa ");
-    console.log(this.founded[0][1]);
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa " );
 
     for (let i = 0; i < this.founded[0].length; i++) {
-      console.log("am working on this founded i this.founded " + this.founded[0][i]);
+      // console.log("am working on this founded i this.founded " + this.founded[0][i]);
       this.possibleChoices = this.mappingService.arrayRemove(this.possibleChoices, this.founded[0][i])
-      console.log("and the possible choices are know " + this.possibleChoices);
+      // console.log("and the possible choices are know " + this.possibleChoices);
     }
+
+    this.myFuzzyFunction()
   }
 
+
+  myFuzzyFunction(){
+    console.log("my array of the possible choices");
+    console.log(this.mappingService.reqValue);
+
+    this.notFounded[0].forEach(element => {
+      console.log("am working with this element : ");
+      console.log(element);
+      console.log("------------------------------------");
+      var foundOne = false
+      var myObject : {world:string, proposition:string, sim: any} = {world:element, proposition:"", sim: 0}
+      for (let i = 0; i < this.mappingService.reqValue.length; i++) {
+
+        console.log("the possible choice know is :");
+        console.log(this.mappingService.reqValue[i]);
+        console.log("----------------------------");
+
+        var refTab = FuzzySet([this.mappingService.reqValue[i]], false);
+
+        var testedValue = refTab.get(element);
+        console.log("the array of the tested value : ");
+        console.log(testedValue);
+        console.log("----------------------------------------");
+
+
+        if (testedValue == null) {
+          console.log("i did not found this one");
+
+        }
+
+        else if (testedValue[0][0]> myObject.sim) {
+          var arrond = (testedValue[0][0]).toFixed(4) * 100
+          myObject = {world:element, proposition:testedValue[0][1], sim: arrond}
+          console.log("my object know look like this :");
+          console.log("***************************");
+          console.log(myObject);
+          console.log("***************************");
+          foundOne = true
+
+        }
+      }
+
+      if (foundOne) {
+        console.log("yesss i found one");
+        this.fuzzyArray.push(myObject);
+      }
+      else{
+        console.log("nooooooooooooo i didn't found one");
+        this.notFoundFuzzy.push(element)
+      }
+
+    });
+
+  }
 
 }
