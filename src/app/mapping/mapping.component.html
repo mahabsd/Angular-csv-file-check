@@ -32,10 +32,11 @@
       <tr>
         <th scope="col">N°</th>
         <th scope="col">Header</th>
-        <th scope="col">Matched word</th>
+        <th scope="col">proposition</th>
         <th scope="col">% of matching</th>
-        <th scope="col">Confirm</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Other proposition</th>
+         <th scope="col">Confirm</th>
+
 
       </tr>
     </thead>
@@ -45,13 +46,18 @@
         <td>{{object.word}}</td>
         <td>{{object.proposition}}</td>
         <td>{{object.sim}}%</td>
+        <div class="input-group">
+          <select class="custom-select" id="PropSelect" [(ngModel)]="PropSelected">
+            <option value="{{object.proposition}}" selected>{{object.proposition}}</option>
+            <option value="{{possible}}" *ngFor="let possible of possibleChoices">{{possible}}</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
          <td >
-              <button class="btn btn-success" type="button">Confirm</button>
+              <button class="btn btn-success" type="button" (click)="confirmChoise(i)">Confirm</button>
           </td>
 
-          <td >
-            <button class="btn btn-danger" type="button">Delete</button>
-        </td>
+        
          
         
 
