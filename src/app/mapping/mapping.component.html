@@ -1,52 +1,60 @@
-<div >
-  <table class="table table-striped" >
-    <thead>
-      <tr>
-        <th scope="col">N°</th>
-        <th scope="col">Header</th>
-        <th scope="col">Confirm</th>
-        <th scope="col">Edit</th>
-      </tr>
-    </thead>
-    <tbody >
-      <tr *ngFor="let found of founded[0]; let i = index" >
-        <th scope="row">{{i+1}}</th>
-        <td>{{found}}</td>
-        <td><button class="btn btn-success"> Confirm </button></td>
-        <td><button class="btn btn-warning">Change it</button></td>
-      </tr>
-    </tbody>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Header</th>
+            <th scope="col">Confirm</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let found of founded[0]; let i = index" >
+            <th scope="row">{{i+1}}</th>
+            <td>{{found}}</td>
+            <td><button class="btn btn-success"> Confirm </button></td>
+            <td><button class="btn btn-warning">Change it</button></td>
+          </tr>
+        </tbody>
+    
+      </table>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Header</th>
+            <th scope="col">Matched word</th>
+            <th scope="col">% of matching</th>
+            <th scope="col">Confirm</th>
+            <th scope="col">Delete</th>
+    
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let object of fuzzyArray; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{object.word}}</td>
+            <td>{{object.proposition}}</td>
+            <td>{{object.sim}}%</td>
+             <td >
+                  <button class="btn btn-success" type="button">Confirm</button>
+              </td>
+    
+              <td >
+                <button class="btn btn-danger" type="button">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-success col-12" disabled>Confirmer</button>
+  
+    </div>
+   
+  </div>
 
-  </table>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">N°</th>
-        <th scope="col">Header</th>
-        <th scope="col">Matched word</th>
-        <th scope="col">% of matching</th>
-        <th scope="col">Confirm</th>
-        <th scope="col">Delete</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let object of fuzzyArray; let i = index">
-        <th scope="row">{{i+1}}</th>
-        <td>{{object.word}}</td>
-        <td>{{object.proposition}}</td>
-        <td>{{object.sim}}%</td>
-         <td >
-              <button class="btn btn-success" type="button">Confirm</button>
-          </td>
-
-          <td >
-            <button class="btn btn-danger" type="button">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="btn btn-success col-12" disabled>Confirmer</button>
 </div>
 
 
