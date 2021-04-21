@@ -12,11 +12,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModelComponent } from './model/model.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthorizationGuard } from './services/authorization.guard';
 
 const appRoutes: Routes = [
   { path:'' , component: MainComponent },
   { path:'mapping-phase' , component: MappingComponent },
-  { path:'model' , component: ModelComponent }
+  { path:'model' , component: ModelComponent, canActivate: [AuthorizationGuard] },
+  { path:'login' , component: LoginComponent }
 ]
 
 @NgModule({
@@ -27,7 +30,8 @@ const appRoutes: Routes = [
     MappingComponent,
     MainComponent,
     NavbarComponent,
-    ModelComponent
+    ModelComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
