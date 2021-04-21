@@ -13,7 +13,7 @@ export class MappingComponent implements OnInit {
   founded: string[];
   notFounded: any[];
   possibleChoices: any[];
-
+  PropSelected:any;
   fuzzyArray : {word:string, proposition:string, sim: any}[] = []
   notFoundFuzzy = []
 
@@ -86,13 +86,33 @@ export class MappingComponent implements OnInit {
       else{
         console.log("nooooooooooooo i didn't found one");
         this.notFoundFuzzy.push(element)
-      }
-   console.log(this.fuzzyArray);
-   console.log(this.notFoundFuzzy);
-   
-   
+      } 
     });
 
   }
+  confirmChoise(i){
+    const SelectedLine=this.fuzzyArray[i]
+    var position=0;
+    const header=this.mappingService.header[0]
+    var headerValues=Object.values(header)
+    var headerKey=Object.keys(header) 
+    console.log("the global header:",header);
+    console.log("----------------------------------------");
+    
+    for(let i=0;i<headerValues.length;i++){
+      if(headerValues[i]==SelectedLine.word){
+        position=i;
+      }
+    }
+    
+    var KeySelection=headerKey[position];
+   
+    header[KeySelection]=this.PropSelected
+     console.log(header);
+       
+  this.PropSelected='';
+
+  }
+
 
 }
