@@ -15,8 +15,8 @@ export class FileService {
   addFile(data) {
     return this.http.post(this.filesUrl + "file/upload-single/", data );
   }
-  getFile(data) {
-    return this.http.get(this.filesUrl + "file/JSONfile", data);
+  postFile(data) {
+    return this.http.post(this.filesUrl + "file/JSONfile/", data);
   }
 
 }

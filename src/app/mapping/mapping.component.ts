@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MappingServices } from '../services/mapping.service';
 import FuzzySet from 'fuzzyset.js'
+import { FileService } from '../services/fileUpload.service';
+import { element } from 'protractor';
 
 
 
@@ -13,12 +15,12 @@ export class MappingComponent implements OnInit {
   founded: any[];
   notFounded: any[];
   possibleChoices: any[] = [];
-  fuzzyArray : {word:string, proposition:string, sim: any}[] = []
+  fuzzyArray: { word: string, proposition: string, sim: any }[] = []
   notFoundFuzzy = []
-  mappedWord : {myInput:string, correctValue: string }[] = []
+  mappedWord: { myInput: string, correctValue: string }[] = []
 
 
-  constructor(private mappingService: MappingServices) {
+  constructor(private mappingService: MappingServices, private fileService: FileService) {
   }
 
 
@@ -39,13 +41,13 @@ export class MappingComponent implements OnInit {
 
 
 
-  myFuzzyFunction(){
+  myFuzzyFunction() {
     console.log("my array of the possible choices");
     console.log(this.mappingService.reqValue);
 
     this.notFounded[0].forEach(element => {
       var foundOne = false
-      var myObject : {word:string, proposition:string, sim: any} = {word:element, proposition:"", sim: 0}
+      var myObject: { word: string, proposition: string, sim: any } = { word: element, proposition: "", sim: 0 }
       for (let i = 0; i < this.mappingService.reqValue.length; i++) {
 
         var refTab = FuzzySet([this.mappingService.reqValue[i]], false);
@@ -58,9 +60,9 @@ export class MappingComponent implements OnInit {
 
         }
 
-        else if ((testedValue[0][0]).toFixed(4)*100> myObject.sim) {
+        else if ((testedValue[0][0]).toFixed(4) * 100 > myObject.sim) {
           var arrond = (testedValue[0][0]).toFixed(4) * 100
-          myObject = {word:element, proposition:testedValue[0][1], sim: arrond}
+          myObject = { word: element, proposition: testedValue[0][1], sim: arrond }
           foundOne = true
 
         }
@@ -69,36 +71,56 @@ export class MappingComponent implements OnInit {
       if (foundOne) {
         this.fuzzyArray.push(myObject);
       }
-      else{
+      else {
         this.notFoundFuzzy.push(element)
       }
     });
 
   }
 
-  confirmChoise(obj , selectedhahah, index){
+  confirmChoise(obj, selectedhahah, index) {
     console.log(obj);
 
     if (selectedhahah != 'other') {
       this.founded[0].push(selectedhahah);
-      this.mappedWord.push({myInput: obj, correctValue: selectedhahah})
-      console.log(this.mappedWord)
+      this.mappedWord.push({ myInput: obj, correctValue: selectedhahah })
+
     }
-    // console.log(this.founded);
     this.possibleChoices = this.mappingService.arrayRemove(this.possibleChoices, selectedhahah)
 
-    if (index>999) {
-      this.fuzzyArray.splice(index-10000,1)
+    if (index > 999) {
+      this.fuzzyArray.splice(index - 10000, 1)
     }
 
-    else{
-      this.notFoundFuzzy.splice(index,1)
+    else {
+      this.notFoundFuzzy.splice(index, 1)
     }
 
   }
 
-  sendData(){
-    alert("test")
+  sendData() {
+    let tab = []
+    let data = {
+      data1: this.mappedWord,
+      data2: this.mappingService.allValue
+    }
+    this.mappingService.allValue.forEach(element => {
+      for (const [key, value] of Object.entries(element[0])) {
+        this.mappedWord.forEach(word => {
+          if (word.myInput == value) {
+            element[0][key] = word.correctValue
+          }
+        })
+      }
+      tab.push(element)
+    });
+    console.log(tab);
+    
+    this.fileService.postFile(tab).subscribe(res => {
+      console.log( res)
+    }
+    )
+
   }
 
 }
