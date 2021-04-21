@@ -19,9 +19,9 @@
             <td><button class="btn btn-warning">Change it</button></td>
           </tr>
         </tbody>
-
+    
       </table>
-      <table class="table">
+      <!-- <table class="table">
         <thead>
           <tr>
             <th scope="col">N°</th>
@@ -30,7 +30,7 @@
             <th scope="col">% of matching</th>
             <th scope="col">Confirm</th>
             <th scope="col">Delete</th>
-
+    
           </tr>
         </thead>
         <tbody>
@@ -42,19 +42,18 @@
              <td >
                   <button class="btn btn-success" type="button">Confirm</button>
               </td>
-
+    
               <td >
                 <button class="btn btn-danger" type="button">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-success col-12" disabled>Confirmer</button>
-
+      <button class="btn btn-success col-12" disabled>Confirmer</button> -->
+  
     </div>
-
+   
   </div>
-
 
   <table class="table">
     <thead>
@@ -76,7 +75,7 @@
         <td>{{object.proposition}}</td>
         <td>{{object.sim}}%</td>
         <div class="input-group">
-          <select class="custom-select" id="PropSelect" [(ngModel)]="PropSelected">
+          <select class="custom-select" id="PropSelect">
             <option value="{{object.proposition}}" selected>{{object.proposition}}</option>
             <option value="{{possible}}" *ngFor="let possible of possibleChoices">{{possible}}</option>
             <option value="other">Other</option>
