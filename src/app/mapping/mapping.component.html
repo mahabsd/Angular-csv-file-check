@@ -1,26 +1,7 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-3"></div>
+  <!-- <div class="row">
     <div class="col-md-6">
-      <table class="table table-striped" >
-        <thead>
-          <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Header</th>
-            <th scope="col">Confirm</th>
-            <th scope="col">Edit</th>
-          </tr>
-        </thead>
-        <tbody >
-          <tr *ngFor="let found of founded[0]; let i = index" >
-            <th scope="row">{{i+1}}</th>
-            <td>{{found}}</td>
-            <td><button class="btn btn-success"> Confirm </button></td>
-            <td><button class="btn btn-warning">Change it</button></td>
-          </tr>
-        </tbody>
 
-      </table>
       <table class="table">
         <thead>
           <tr>
@@ -50,12 +31,10 @@
         </tbody>
       </table>
       <button class="btn btn-success col-12" disabled>Confirmer</button>
-
     </div>
+  </div> -->
 
-  </div>
-
-
+<!-- début du tableau trouver avec les fuzzy search -->
   <table class="table">
     <thead>
       <tr>
@@ -63,38 +42,79 @@
         <th scope="col">Header</th>
         <th scope="col">proposition</th>
         <th scope="col">% of matching</th>
-        <th scope="col">Other proposition</th>
-         <th scope="col">Confirm</th>
-
-
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let object of fuzzyArray; let i = index">
         <th scope="row">{{i+1}}</th>
         <td>{{object.word}}</td>
-        <td>{{object.proposition}}</td>
+        <td>
+          <div class="input-group">
+            <!-- <select class="custom-select" id="PropSelect" [(ngModel)]="PropSelected"> -->
+            <select #selectedhahah class="custom-select">
+              <option [value]="object.proposition" selected>{{object.proposition}}</option>
+              <option [value]="possible" *ngFor="let possible of possibleChoices">{{possible}}</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button" (click)="confirmChoise(object.word, selectedhahah.value, i+10000)">Confirm</button>
+            </div>
+          </div>
+        </td>
         <td>{{object.sim}}%</td>
-        <div class="input-group">
-          <select class="custom-select" id="PropSelect" [(ngModel)]="PropSelected">
-            <option value="{{object.proposition}}" selected>{{object.proposition}}</option>
-            <option value="{{possible}}" *ngFor="let possible of possibleChoices">{{possible}}</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-         <td >
-              <button class="btn btn-success" type="button" (click)="confirmChoise(i)">Confirm</button>
-          </td>
+      </tr>
+<!-- fin du tableau trouver avec les fuzzy search -->
 
-
-
+<!-- début du tableau pas trouver avec les fuzzy search -->
+      <hr>
+      <tr *ngFor="let notFoundFuzzy of notFoundFuzzy; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{notFoundFuzzy}}</td>
+        <td>
+          <div class="input-group">
+            <!-- <select class="custom-select" id="PropSelect" [(ngModel)]="PropSelected"> -->
+            <select #selectedOther class="custom-select">
+              <option value="{{possible}}" *ngFor="let possible of possibleChoices ; let i = index">{{possible}}</option>
+              <option value="other" selected>Other</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-success" type="button" (click)="confirmChoise(notFoundFuzzy, selectedOther.value, i)">Confirm</button>
+            </div>
+          </div>
+        </td>
+        <td>
+          0%
+        </td>
       </tr>
     </tbody>
   </table>
+  <!-- fin du tableau pas trouver avec les fuzzy search -->
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">required value</th>
+        <th scope="col">found</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let found of founded[0]; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{found}}</td>
+        <td>✔️</td>
+      </tr>
+      <hr>
+      <tr *ngFor="let notfound of possibleChoices; let i = index">
+
+        <th scope="row">{{i+1}}</th>
+        <td>{{notfound}}</td>
+        <td>❌</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+
   <button class="btn btn-success col-12" disabled>Confirmer</button>
 </div>
-
-
-
-
-
