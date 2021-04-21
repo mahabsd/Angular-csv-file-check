@@ -15,25 +15,8 @@ export class FileService {
   addFile(data) {
     return this.http.post(this.filesUrl + "file/upload-single/", data );
   }
-  getFile(id) {
-    return this.http.get(this.filesUrl + "files/file/" + id,);
+  postFile(data) {
+    return this.http.post(this.filesUrl + "file/JSONfile/", data);
   }
-  updateFile(id, data) {
-    return this.http.put(this.filesUrl + "files/file/update/"+ id, data );
-  }
-  deleteFile(id) {
-    return this.http.delete(this.filesUrl + "files/file/delete/" + id, );
-  }
-  getAllFiles() {
-    return this.http.get(this.filesUrl + "files/getAllfiles");
-  }
-  getAllRoles() {
-    return this.http.get(this.filesUrl + "files/getAllRoles");
-  }
-  updateFileConge(id, data) {
-    return this.http.put(this.filesUrl + "files/file/updateConge/"+ id, data );
-  }
-  // postImage(data){
-  //   return this.http.post(this.filesUrl + "files/file/add/", data );
-  // }
+
 }
