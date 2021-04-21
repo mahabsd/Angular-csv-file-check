@@ -1,9 +1,4 @@
-<a class="btn btn-info col-6"  routerLink="/">Home page</a>
-<a class="btn btn-primary col-6" routerLink="/model">Expensya</a>
-
 <div >
-
-
   <table class="table table-striped" >
     <thead>
       <tr>
@@ -14,15 +9,11 @@
       </tr>
     </thead>
     <tbody >
-      
       <tr *ngFor="let found of founded[0]; let i = index" >
-      
         <th scope="row">{{i+1}}</th>
-
         <td>{{found}}</td>
         <td><button class="btn btn-success"> Confirm </button></td>
         <td><button class="btn btn-warning">Change it</button></td>
-      
       </tr>
     </tbody>
 
@@ -57,14 +48,11 @@
               <button class="btn btn-success" type="button" (click)="confirmChoise(i)">Confirm</button>
           </td>
 
-        
-         
-        
+
 
       </tr>
     </tbody>
   </table>
-
   <button class="btn btn-success col-12" disabled>Confirmer</button>
 </div>
 
