@@ -83,9 +83,17 @@ export class MappingComponent implements OnInit {
 
     if (selectedhahah != 'other') {
       this.founded[0].push(selectedhahah);
-      this.mappedWord.push({ myInput: obj, correctValue: selectedhahah })
+      this.mappedWord.push({ myInput: obj, correctValue: selectedhahah });
+    }
+
+    else{
+      this.mappedWord.push({ myInput: obj, correctValue: selectedhahah });
+      console.log("my mappedWord");
+
+      console.log(this.mappedWord);
 
     }
+
     this.possibleChoices = this.mappingService.arrayRemove(this.possibleChoices, selectedhahah)
 
     if (index > 999) {
@@ -115,9 +123,9 @@ export class MappingComponent implements OnInit {
       tab.push(element)
     });
     console.log(tab);
-    
+
     this.fileService.postFile(tab).subscribe(res => {
-      console.log( res)
+      console.log(res)
     }
     )
 
