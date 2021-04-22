@@ -18,8 +18,8 @@ export class MappingComponent implements OnInit {
   fuzzyArray: { word: string, proposition: string, sim: any }[] = []
   notFoundFuzzy = []
   mappedWord: { myInput: string, correctValue: string }[] = []
-
-
+  Lienfichier:any;
+  ConfirmClicked=true; 
   constructor(private mappingService: MappingServices, private fileService: FileService) {
   }
 
@@ -36,7 +36,7 @@ export class MappingComponent implements OnInit {
       // console.log(this.possibleChoices);
     }
     this.myFuzzyFunction()
-
+ this.ConfirmClicked=true;
   }
 
 
@@ -124,11 +124,9 @@ export class MappingComponent implements OnInit {
     });
     console.log(tab);
 
-    this.fileService.postFile(tab).subscribe(res => {
-      console.log(res)
-    }
+    this.fileService.postFile(tab).subscribe(res => { this.Lienfichier=res}
     )
-
-  }
+    this.ConfirmClicked=false
+}
 
 }
