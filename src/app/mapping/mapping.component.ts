@@ -61,7 +61,7 @@ export class MappingComponent implements OnInit {
         }
 
         else if ((testedValue[0][0]).toFixed(4) * 100 > myObject.sim) {
-          var arrond = (testedValue[0][0]).toFixed(4) * 100
+          var arrond = (testedValue[0][0]).toFixed(2) * 100
           myObject = { word: element, proposition: testedValue[0][1], sim: arrond }
           foundOne = true
 

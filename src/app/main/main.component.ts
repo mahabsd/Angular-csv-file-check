@@ -7,7 +7,7 @@ import { MappingServices } from '../services/mapping.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent {
+export class MainComponent implements OnInit {
 
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
   files: any[] = [];
@@ -18,6 +18,16 @@ export class MainComponent {
   constructor(private fileService : FileService , private mappingService : MappingServices){
 
   }
+
+  ngOnInit(){
+    this.mappingService.allValue = []
+    this.mappingService.header = []
+    this.mappingService.foundedValue = []
+    this.mappingService.confirmedValue = []
+    this.mappingService.notFoundedValue = []
+    this.mappingService.reqValue = []
+  }
+
   /**
    * on file drop handler
    */
