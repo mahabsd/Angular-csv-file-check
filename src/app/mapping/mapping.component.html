@@ -116,5 +116,7 @@
   </table>
 
 
-  <button class="btn btn-success col-12" (click)='sendData()'>Confirmer</button>
+  <button class="btn btn-success col-12" (click)='sendData()'> Confirm </button>
+  <!-- <a class="btn btn-danger"   href="{{Lienfichier.message}}" target="_blank" role="button" disabled>Download file</a> -->
+  <button class="btn btn-danger col-12"  [disabled]="ConfirmClicked" > <a href="{{Lienfichier.message}}" target="_blank">Download file</a> </button>
 </div>
