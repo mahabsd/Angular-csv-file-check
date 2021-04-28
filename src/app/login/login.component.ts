@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   submitLogin(form) {
     this.loginService.loginUser(form).subscribe((res:{message: string; token: string})=>{
       localStorage.setItem('token', res.token);
-      this.router.navigate(['model']);
+      this.router.navigate(['home-expensya']);
     })
   }
 

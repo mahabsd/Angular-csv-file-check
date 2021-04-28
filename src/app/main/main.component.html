@@ -36,11 +36,33 @@
           <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
         </div>
         <!-- <a class="btn btn-success" routerLink="mapping-phase">Confirm</a> -->
+
+        <div *ngIf="showTable">
+
+          <table class="table table-striped" >
+            <thead>
+              <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Erreur ligne</th>
+                <th scope="col">Comment erreur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let errer of errersArray; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{errer.errLigne2}}</td>
+                <td>the header contains <strong>{{errer.errLigne1Lenght}}</strong> colones and the line <strong>{{errer.errLigne2}}</strong> contain <strong>{{errer.errLigne2Lenght}}</strong> colones <br> please correct it and reload the file</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
        <div class="container">
         <div class="row">
           <div class="col-4"></div>
           <div class="col-4">
-            <button class="btn btn-success col-12" routerLink="mapping-phase"> Confirm </button>
+            <button class="btn btn-success col-12" routerLink="mapping-phase" [disabled]="confirmBTN"> Confirm </button>
           </div>
         </div>
        </div>

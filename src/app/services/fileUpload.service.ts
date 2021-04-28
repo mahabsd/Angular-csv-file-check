@@ -19,4 +19,8 @@ export class FileService {
     return this.http.post(this.filesUrl + "file/JSONfile/", data);
   }
 
+  getUsers(){
+    return this.http.get(this.filesUrl + "file/getAllUsers/");
+  }
+
 }

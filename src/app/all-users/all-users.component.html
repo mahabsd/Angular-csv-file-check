@@ -1,0 +1,26 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">N°</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Show details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fileService of myArray; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{fileService.LastName}}</td>
+      <td>{{fileService.FirstName}}</td>
+      <td>{{fileService.Mail}}</td>
+      <td><button class="btn btn-primary" routerLink="/user" (click)='getUsers(i)' >details</button></td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+
+

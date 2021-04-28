@@ -8,12 +8,15 @@ import { MappingServices } from '../services/mapping.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  errersArray = []
 
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
   files: any[] = [];
   file: File;
   formData: any;
-  MyObject
+  MyObject;
+  confirmBTN : Boolean = true
+  showTable = false
 
   constructor(private fileService : FileService , private mappingService : MappingServices){
 
@@ -57,6 +60,19 @@ export class MainComponent implements OnInit {
       this.mappingService.foundedData(this.MyObject.tab3);
       this.mappingService.notFoundedData(this.MyObject.tab4);
       this.mappingService.reqData(this.MyObject.models);
+      this.confirmBTN= !this.MyObject.fileClean
+      this.errersArray = this.MyObject.caseProblem
+      if (this.errersArray.length > 0) {
+        this.showTable = true
+      }
+      // if (!this.MyObject.fileClean) {
+      //   alert(`
+      //   you have an erruer in this lignes:
+      //   ${JSON.stringify(this.MyObject.caseProblem[0].errLigne2)}
+
+
+      //   `)
+      // }
     });
     this.prepareFilesList(event.target.files);
   }

@@ -14,12 +14,19 @@ import { ModelComponent } from './model/model.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthorizationGuard } from './services/authorization.guard';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { SingleUserComponent } from './all-users/single-user/single-user.component';
+import { ExpensyaComponent } from './expensya/expensya.component';
 
 const appRoutes: Routes = [
   { path:'' , component: MainComponent },
   { path:'mapping-phase' , component: MappingComponent },
   { path:'model' , component: ModelComponent, canActivate: [AuthorizationGuard] },
-  { path:'login' , component: LoginComponent }
+  { path:'login' , component: LoginComponent },
+  { path:'home-expensya' , component: ExpensyaComponent },
+  { path:'users' , component: AllUsersComponent },
+  { path:'user' , component: SingleUserComponent }
+
 ]
 
 @NgModule({
@@ -31,7 +38,10 @@ const appRoutes: Routes = [
     MainComponent,
     NavbarComponent,
     ModelComponent,
-    LoginComponent
+    LoginComponent,
+    AllUsersComponent,
+    SingleUserComponent,
+    ExpensyaComponent
   ],
   imports: [
     BrowserModule,
