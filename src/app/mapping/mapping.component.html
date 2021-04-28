@@ -11,7 +11,7 @@
             <th scope="col">% of matching</th>
             <th scope="col">Confirm</th>
             <th scope="col">Delete</th>
-    
+
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
              <td >
                   <button class="btn btn-success" type="button">Confirm</button>
               </td>
-    
+
               <td >
                 <button class="btn btn-danger" type="button">Delete</button>
             </td>
@@ -117,6 +117,5 @@
 
 
   <button class="btn btn-success col-12" (click)='sendData()'> Confirm </button>
-  <!-- <a class="btn btn-danger"   href="{{Lienfichier.message}}" target="_blank" role="button" disabled>Download file</a> -->
   <button class="btn btn-danger col-12"  [disabled]="ConfirmClicked" > <a href="{{Lienfichier.message}}" target="_blank">Download file</a> </button>
 </div>
