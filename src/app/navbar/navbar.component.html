@@ -16,13 +16,13 @@
     </ul>
     <ul class="nav navbar-nav ">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/login">Login as Expensya</a>
+        <a class="nav-link" routerLink="/login" *ngIf="!show">Login as Expensya</a>
       </li>
-      <!-- <li class="nav-item active">
-        <a class="nav-link" routerLink="/model">Expensya </a>
-      </li> -->
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/" (click)="logout()">Logout </a>
+        <a class="nav-link" routerLink="/home-expensya" (click)="show = true">Expensya </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/" (click)="logout()" *ngIf="show">Logout </a>
       </li>
     </ul>
   </div>

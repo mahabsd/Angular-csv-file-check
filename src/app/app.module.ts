@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path:'mapping-phase' , component: MappingComponent },
   { path:'model' , component: ModelComponent, canActivate: [AuthorizationGuard] },
   { path:'login' , component: LoginComponent },
-  { path:'home-expensya' , component: ExpensyaComponent },
+  { path:'home-expensya' , component: ExpensyaComponent, canActivate: [AuthorizationGuard]},
   { path:'users' , component: AllUsersComponent },
   { path:'user' , component: SingleUserComponent }
 

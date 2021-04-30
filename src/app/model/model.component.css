@@ -1,0 +1,45 @@
+#addHeader{
+   display: flex; 
+   justify-content: space-around;
+   /* width: 100px; */
+   align-items: center;
+   background-color:#b4cce6;
+   margin: 0;
+   justify-content: center;
+}
+
+#bouton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50%;
+    border:unset;    
+}
+#plus{
+    color:#b4cce6 ;
+}
+.blue-col{
+    background-color:#b4cce6 ;
+}
+#first-part{
+    border-bottom-left-radius: 50px ;
+    border-top-left-radius: 50px ;
+}
+#second-part{
+    border-bottom-right-radius: 50px ;
+    border-top-right-radius: 50px ;
+}
+#input{
+    border:#b4cce6 ;    
+    background-color:#b4cce6  ;
+    width:300px;
+}
+#update-input{
+    border:unset;    
+    background-color:#e8eaec ;
+    width:180px;
+}
+#delete{
+    color: rgb(255, 230, 7);
+}

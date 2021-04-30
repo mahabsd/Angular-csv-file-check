@@ -32,6 +32,11 @@
     color: #38424c;
   }
 }
+#second{display:none;}
+.center
+ {
+  margin-top: 10% ;
+ }
 
 .fileover {
   animation: shake 1s;
@@ -125,4 +130,17 @@
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+
+/*This is modifying the btn-primary colors but you could create your own .btn-something class as well*/
+.btn-primary {
+  color: #fff;
+  background-color: #8ed3ec;
+  border-color: #357ebd; /*set the color you want here*/
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #00b3db;
+  border-color: #0083f6; /*set the color you want here*/
 }

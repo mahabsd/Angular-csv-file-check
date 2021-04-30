@@ -7,8 +7,12 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
+  show: boolean = false;
   usersUrl: string = environment.baseUrl;
   constructor(private http: HttpClient) {
+    if (localStorage.getItem('token')) {
+      this.show = true
+    }
   }
 
 

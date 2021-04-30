@@ -1,16 +1,6 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <p style="color:white" >
-                ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-                ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-            </p>
-        </div>
-    </div>
-    <div class="row"  style="display: flex; flex-wrap: wrap">
+<div class="container center">
+
+    <div class="row" style="display: flex; flex-wrap: wrap">
         <div class="col-3">
         </div>
         <div class="col-md-6 my-auto">
@@ -22,19 +12,25 @@
                         </div>
                     </div>
                     <form action="" method="post" name="login" [formGroup]="loginForm">
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" name="email" class="form-control" formControlName="email"
-                                aria-describedby="emailHelp" placeholder="Enter email">
+                                aria-describedby="emailHelp" placeholder="Enter email" required
+                               >
+                            <!-- <div *ngIf="form.controls.email.errors && (form.controls.email.invalid || form.controls.email.touched)">
+                                <small class="text-danger" *ngIf="email.errors.required">Primary email is
+                                    required</small>
+                            </div> -->
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Password</label>
+                        <div class="form-group ">
+                            <label for="exampleInputEmail1" required>Password</label>
                             <input type="password" name="password" formControlName="password" class="form-control"
                                 aria-describedby="emailHelp" placeholder="Enter Password">
+                            <div class="invalid-tooltip">
+                                password is required.
+                            </div>
                         </div>
-                        <!-- <div class="form-group">
-                                    <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
-                                </div> -->
+
                         <div class="col-md-12 text-center ">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm"
                                 (click)="submitLogin(loginForm.value)">Login</button>
