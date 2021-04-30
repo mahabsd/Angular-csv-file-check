@@ -5,7 +5,7 @@ import { ModelService } from '../services/model.service';
 @Component({
   selector: 'app-model',
   templateUrl: './model.component.html',
-  styleUrls: ['./model.component.scss']
+  styleUrls: ['./model.component.css']
 })
 export class ModelComponent implements OnInit {
   model: Object;
@@ -25,22 +25,22 @@ export class ModelComponent implements OnInit {
     this.modelService.getAllModels().subscribe(res => this.model = res)
   }
   add(newcolHeader) {
-    this.modelService.addModel(newcolHeader).subscribe(res =>console.log(res))
+    this.modelService.addModel(newcolHeader).subscribe(res =>{ 
+     this.getModel()})
+     this.getModel()
     this.modelform = new FormGroup({
       colHeader: new FormControl('')
     })
-    this.getModel() 
   }
   delete(id) {
-    this.modelService.deleteModel(id).subscribe(res =>console.log(res))
-    this.getModel() 
+    this.modelService.deleteModel(id).subscribe(res =>this.getModel() 
+    )
   }
   update(id, updatedModel) {
-    this.modelService.updateModel(id, updatedModel).subscribe(res =>console.log(res))
+    this.modelService.updateModel(id, updatedModel).subscribe(res =>this.getModel())
     this.modelform = new FormGroup({
       colHeader: new FormControl('')
     })
     this.show = false
-    this.getModel() 
   }
 }

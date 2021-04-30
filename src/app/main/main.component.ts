@@ -17,7 +17,6 @@ export class MainComponent implements OnInit {
   MyObject;
   confirmBTN : Boolean = true
   showTable = false
-
   constructor(private fileService : FileService , private mappingService : MappingServices){
 
   }

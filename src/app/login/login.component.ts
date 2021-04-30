@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
@@ -12,13 +12,14 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   registerForm: FormGroup;
+  show: boolean = false;
 
   constructor(public loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl('')
+      email: new FormControl('',  [Validators.required]),
+      password: new FormControl('',  [Validators.required])
     })
     this.registerForm = new FormGroup({
       email: new FormControl(''),
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginUser(form).subscribe((res:{message: string; token: string})=>{
       localStorage.setItem('token', res.token);
       this.router.navigate(['home-expensya']);
+      this.loginService.show = true;
     })
   }
 
