@@ -9,7 +9,7 @@
         <h3>or</h3>
         <label for="fileDropRef" >Browse for file</label>
       </div>
-      <div class="files-list">
+      <div class="offset-3 col-6 files-list" >
         <div class="single-file" *ngFor="let file of files; let i = index" >
           <img src="assets/img/dnd/ic-file.svg" width="45px" alt="file">
           <div class="info" >
@@ -19,7 +19,7 @@
             <p class="size">
               {{ formatBytes(file?.size) }}
             </p>
-            <!-- <app-progress [progress]="file?.progress"></app-progress> -->
+            <app-progress [progress]="file?.progress"></app-progress>
           </div>
           <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
         </div>
@@ -49,7 +49,7 @@
         <div class="row">
           <div class="col-4"></div>
           <div class="col-4">
-            <button class="btn btn-primary  col-12" routerLink="mapping-phase"  > Confirm </button>
+            <button class="btn btn-primary  col-12" routerLink="mapping-phase" *ngIf="disabled" > Confirm </button>
           </div>
         </div>
        </div>

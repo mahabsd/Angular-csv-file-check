@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   MyObject;
   confirmBTN : Boolean = true
   showTable = false
+  disabled = false
   constructor(private fileService : FileService , private mappingService : MappingServices){
 
   }
@@ -53,6 +54,8 @@ export class MainComponent implements OnInit {
       console.log(res.tab3)
       console.log(res.tab4)
       this.MyObject = res
+      this.disabled = true
+
       // console.log("et voila les valeur trouver : " + JSON.parse(JSON.stringify(this.MyObject)));
       this.mappingService.allData(this.MyObject.excelJson);
       this.mappingService.headerData(this.MyObject.excelJson[0]);
