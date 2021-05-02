@@ -61,6 +61,7 @@ export class MainComponent implements OnInit {
       this.mappingService.headerData(this.MyObject.excelJson[0]);
       this.mappingService.foundedData(this.MyObject.tab3);
       this.mappingService.notFoundedData(this.MyObject.tab4);
+      this.mappingService.traslatedData(this.MyObject.tab5,this.MyObject.tab4);
       this.mappingService.reqData(this.MyObject.models);
       this.confirmBTN= !this.MyObject.fileClean
       this.errersArray = this.MyObject.caseProblem
