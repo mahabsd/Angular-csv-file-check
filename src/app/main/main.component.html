@@ -1,59 +1,62 @@
-<div class="container center">
-  <div class="row">
-    <div class="col">
-      <div class="cont" appDnd (fileDropped)="onFileDropped($event)">
-        <input type="file" #fileDropRef id="fileDropRef" single (change)="fileBrowseHandler($event)"
-          accept=".csv, .xlsx" />
-        <img src="assets/img/dnd/ic-upload-file.svg" alt="">
-        <h3>Drag and drop file here</h3>
-        <h3>or</h3>
-        <label for="fileDropRef" >Browse for file</label>
-      </div>
-      <div class="offset-3 col-6 files-list" >
-        <div class="single-file" *ngFor="let file of files; let i = index" >
-          <img src="assets/img/dnd/ic-file.svg" width="45px" alt="file">
-          <div class="info" >
-            <h4 class="name">
-              {{ file?.name }}
-            </h4>
-            <p class="size">
-              {{ formatBytes(file?.size) }}
-            </p>
-            <app-progress [progress]="file?.progress"></app-progress>
+<div class="">
+  <div class="container-fluid center bg-text">
+    <div class="row">
+      <div class="col">
+        <div class="cont" appDnd (fileDropped)="onFileDropped($event)">
+          <input type="file" #fileDropRef id="fileDropRef" single (change)="fileBrowseHandler($event)"
+            accept=".csv, .xlsx" />
+          <img src="assets/img/dnd/ic-upload-file.svg" alt="">
+          <h3>Drag and drop file here</h3>
+          <h3>or</h3>
+          <label for="fileDropRef" >Browse for file</label>
+        </div>
+        <div class="offset-3 col-6 files-list" >
+          <div class="single-file" *ngFor="let file of files; let i = index" >
+            <img src="assets/img/dnd/ic-file.svg" width="45px" alt="file">
+            <div class="info" >
+              <h4 class="name">
+                {{ file?.name }}
+              </h4>
+              <p class="size">
+                {{ formatBytes(file?.size) }}
+              </p>
+              <app-progress [progress]="file?.progress"></app-progress>
+            </div>
+            <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
           </div>
-          <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
-        </div>
-
-        <div *ngIf="showTable">
-
-          <table class="table table-striped" >
-            <thead>
-              <tr>
-                <th scope="col">N°</th>
-                <th scope="col">Erreur ligne</th>
-                <th scope="col">Comment erreur</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let errer of errersArray; let i = index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{errer.errLigne2}}</td>
-                <td>the header contains <strong>{{errer.errLigne1Lenght}}</strong> colones and the line <strong>{{errer.errLigne2}}</strong> contain <strong>{{errer.errLigne2Lenght}}</strong> colones <br> please correct it and reload the file</td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-
-       <div class="container">
-        <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <button class="btn btn-primary  col-12" routerLink="mapping-phase" *ngIf="disabled" > Confirm </button>
+  
+          <div *ngIf="showTable">
+  
+            <table class="table table-striped" >
+              <thead>
+                <tr>
+                  <th scope="col">N°</th>
+                  <th scope="col">Erreur ligne</th>
+                  <th scope="col">Comment erreur</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let errer of errersArray; let i = index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{errer.errLigne2}}</td>
+                  <td>the header contains <strong>{{errer.errLigne1Lenght}}</strong> colones and the line <strong>{{errer.errLigne2}}</strong> contain <strong>{{errer.errLigne2Lenght}}</strong> colones <br> please correct it and reload the file</td>
+                </tr>
+              </tbody>
+            </table>
+  
           </div>
+  
+         <div class="container">
+          <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+              <button class="btn btn-primary  col-12" routerLink="mapping-phase" *ngIf="disabled" > Confirm </button>
+            </div>
+          </div>
+         </div>
+  
         </div>
-       </div>
-
       </div>
     </div>
-  </div>
+</div>
+
