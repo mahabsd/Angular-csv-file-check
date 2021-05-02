@@ -184,8 +184,7 @@ export class MappingComponent implements OnInit {
     else {
       this.notFoundFuzzy.splice(index, 1)
     }
-
-    // this.checkFileClean()
+    
     this.fileClean = this.reqValue.length == this.founded[0].length
 
 
@@ -214,19 +213,6 @@ export class MappingComponent implements OnInit {
     this.ConfirmClicked = false
   }
 
-  checkFileClean(){
-    console.log("check function called");
-    console.log("this.reqValue[0].length == 0");
-    console.log(this.reqValue);
-    console.log(this.founded);
-    if (this.reqValue.length == this.founded[0].length) {
-      console.log("condiotn if valider");
-      document.getElementById("firstDiv").style.display = "none";
-    }
-
-    alert("your file has been sent and saved")
-
-  }
 
 }
 
