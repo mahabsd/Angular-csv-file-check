@@ -5,6 +5,8 @@ export class MappingServices{
   confirmedValue = []
   notFoundedValue = []
   reqValue : string[] = []
+  traslatedValue = []
+  notTranslatedValue = []
 
   allData(data){
     this.allValue.push(data)
@@ -27,11 +29,17 @@ export class MappingServices{
       this.reqValue.push(data[i].colHeader)
     }
   }
-  
+
   arrayRemove(arr, value) {
     return arr.filter(function(ele){
         return ele != value;
     });
+  }
+
+  traslatedData(data1,data2){
+    this.traslatedValue.push(data1)
+    this.notTranslatedValue.push(data2)
+
   }
 
 }

@@ -15,6 +15,8 @@ export class MappingComponent implements OnInit {
   founded: any[];
   notFounded: any[];
   possibleChoices: any[] = [];
+  notTranslate :any[] = []
+  translate: any[] = []
   fuzzyArray: { word: string, proposition: string, sim: any }[] = []
   notFoundFuzzy = []
   mappedWord: { myInput: string, correctValue: string }[] = []
@@ -28,6 +30,8 @@ export class MappingComponent implements OnInit {
     this.founded = this.mappingService.foundedValue;
     this.notFounded = this.mappingService.notFoundedValue;
     this.possibleChoices = this.mappingService.reqValue;
+    this.translate = this.mappingService.traslatedValue;
+    this.notTranslate = this.mappingService.notTranslatedValue
 
     for (let i = 0; i < this.founded[0].length; i++) {
       // console.log("am working on this founded i this.founded " + this.founded[0][i]);
@@ -40,43 +44,100 @@ export class MappingComponent implements OnInit {
   }
 
 
+////////////
+// version 1
+// /////////////
 
-  myFuzzyFunction() {
-    console.log("my array of the possible choices");
-    console.log(this.mappingService.reqValue);
+  // myFuzzyFunction() {
+  //   console.log("my array of the possible choices");
+  //   console.log(this.mappingService.reqValue);
 
-    this.notFounded[0].forEach(element => {
-      var foundOne = false
-      var myObject: { word: string, proposition: string, sim: any } = { word: element, proposition: "", sim: 0 }
-      for (let i = 0; i < this.mappingService.reqValue.length; i++) {
+  //   this.notFounded[0].forEach(element => {
+  //     var foundOne = false
+  //     var myObject: { word: string, proposition: string, sim: any } = { word: element, proposition: "", sim: 0 }
+  //     for (let i = 0; i < this.mappingService.reqValue.length; i++) {
 
-        var refTab = FuzzySet([this.mappingService.reqValue[i]], false);
+  //       var refTab = FuzzySet([this.mappingService.reqValue[i]], false);
 
-        var testedValue = refTab.get(element);
+  //       var testedValue = refTab.get(element);
 
 
-        if (testedValue == null) {
-          console.log("i did not found this one");
+  //       if (testedValue == null) {
+  //         console.log("i did not found this one");
 
-        }
+  //       }
 
-        else if ((testedValue[0][0]).toFixed(4) * 100 > myObject.sim) {
-          var arrond = Math.round((testedValue[0][0]) * 100)
-          myObject = { word: element, proposition: testedValue[0][1], sim: arrond }
-          foundOne = true
+  //       else if ((testedValue[0][0]).toFixed(4) * 100 > myObject.sim) {
+  //         var arrond = Math.round((testedValue[0][0]) * 100)
+  //         myObject = { word: element, proposition: testedValue[0][1], sim: arrond }
+  //         foundOne = true
 
-        }
+  //       }
+  //     }
+
+  //     if (foundOne) {
+  //       this.fuzzyArray.push(myObject);
+  //     }
+  //     else {
+  //       this.notFoundFuzzy.push(element)
+  //     }
+  //   });
+
+  // }
+
+/////////////////////
+// version 2
+///////////////////
+
+myFuzzyFunction() {
+  console.log("my array of the possible choices");
+  console.log(this.mappingService.reqValue);
+
+  this.translate[0].forEach(element => {
+
+    var position = this.translate[0].indexOf(element)
+
+
+
+    var foundOne = false
+    var myObject: { word: string, proposition: string, sim: any } = { word: element, proposition: "", sim: 0 }
+    for (let i = 0; i < this.mappingService.reqValue.length; i++) {
+
+      var refTab = FuzzySet([this.mappingService.reqValue[i]], false);
+
+      var testedValue = refTab.get(element);
+
+
+      if (testedValue == null) {
+        console.log("i did not found this one");
+
       }
 
-      if (foundOne) {
-        this.fuzzyArray.push(myObject);
-      }
-      else {
-        this.notFoundFuzzy.push(element)
-      }
-    });
+      else if ((testedValue[0][0]).toFixed(4) * 100 > myObject.sim) {
+        var arrond = Math.round((testedValue[0][0]) * 100)
+        myObject = { word: this.notTranslate[0][position], proposition: testedValue[0][1], sim: arrond }
+        foundOne = true
 
-  }
+      }
+    }
+
+    if (foundOne) {
+      this.fuzzyArray.push(myObject);
+    }
+    else {
+      this.notFoundFuzzy.push(element)
+    }
+  });
+
+}
+
+
+//////////////////
+// end version 2
+//////////////////
+
+
+
 
   confirmChoise(obj, selectedhahah, index) {
     console.log(obj);
