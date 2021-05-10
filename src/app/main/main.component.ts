@@ -35,7 +35,6 @@ export class MainComponent implements OnInit {
    * on file drop handler
    */
   onFileDropped($event) {
-    console.log($event.target.files[0]);
     this.prepareFilesList($event);
   }
 
@@ -49,19 +48,15 @@ export class MainComponent implements OnInit {
       this.formData.append('file', this.file, this.file.name);
     }
     // reception des données du back
-    this.fileService.addFile(this.formData).subscribe((res :({excelJson: object , tab3: string[], tab4: string[], models: string[]})) => {
-      console.log(res.excelJson[0])
-      console.log(res.tab3)
-      console.log(res.tab4)
+    this.fileService.addFile(this.formData).subscribe((res :({excelJson: object , found: string[], notFound: string[], models: string[]})) => {
       this.MyObject = res
       this.disabled = true
 
-      // console.log("et voila les valeur trouver : " + JSON.parse(JSON.stringify(this.MyObject)));
       this.mappingService.allData(this.MyObject.excelJson);
       this.mappingService.headerData(this.MyObject.excelJson[0]);
-      this.mappingService.foundedData(this.MyObject.tab3);
-      this.mappingService.notFoundedData(this.MyObject.tab4);
-      this.mappingService.traslatedData(this.MyObject.tab5,this.MyObject.tab4);
+      this.mappingService.foundedData(this.MyObject.found);
+      this.mappingService.notFoundedData(this.MyObject.notFound);
+      this.mappingService.traslatedData(this.MyObject.translatedHeader,this.MyObject.notFound);
       this.mappingService.reqData(this.MyObject.models);
       this.confirmBTN= !this.MyObject.fileClean
       this.errersArray = this.MyObject.caseProblem
@@ -86,7 +81,6 @@ export class MainComponent implements OnInit {
    */
   deleteFile(index: number) {
     if (this.files[index].progress < 100) {
-      console.log("Upload in progress.");
       return;
     }
     this.files.splice(index, 1);

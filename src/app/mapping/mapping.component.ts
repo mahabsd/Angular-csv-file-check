@@ -3,6 +3,7 @@ import { MappingServices } from '../services/mapping.service';
 import FuzzySet from 'fuzzyset.js'
 import { FileService } from '../services/fileUpload.service';
 import { element } from 'protractor';
+import { Router } from '@angular/router';
 
 
 
@@ -25,8 +26,9 @@ export class MappingComponent implements OnInit {
   reqValue: any;
 
   fileClean: boolean = false
+  showButton: boolean = false;
 
-  constructor(private mappingService: MappingServices, private fileService: FileService) {
+  constructor(private mappingService: MappingServices, private fileService: FileService, private router: Router) {
   }
 
 
@@ -38,24 +40,9 @@ export class MappingComponent implements OnInit {
     this.notTranslate = this.mappingService.notTranslatedValue;
     this.reqValue = this.mappingService.reqValue;
 
-
-    // check if the file is clean or not
-    // console.log("my this.founded[0].length :");
-    // console.log(this.founded[0].length);
-    // console.log("my this.reqValue");
-    // console.log(this.reqValue[0].length);
-
-    // this.fileClean = this.founded[0].length == this.reqValue[0].length
-    // console.log("my fileClean");
-    // console.log(this.fileClean);
-
-
-
     for (let i = 0; i < this.founded[0].length; i++) {
-      // console.log("am working on this founded i this.founded " + this.founded[0][i]);
       this.possibleChoices = this.mappingService.arrayRemove(this.possibleChoices, this.founded[0][i])
-      // console.log("and the possible choices are know ");
-      // console.log(this.possibleChoices);
+
     }
     this.myFuzzyFunction()
     this.ConfirmClicked = true;
@@ -63,7 +50,7 @@ export class MappingComponent implements OnInit {
 
 
   ////////////
-  // version 1
+  // version 1 : in case the traduction module won't work
   // /////////////
 
   // myFuzzyFunction() {
@@ -108,15 +95,8 @@ export class MappingComponent implements OnInit {
   ///////////////////
 
   myFuzzyFunction() {
-    console.log("my array of the possible choices");
-    console.log(this.mappingService.reqValue);
-
     this.translate[0].forEach(element => {
-
       var position = this.translate[0].indexOf(element)
-
-
-
       var foundOne = false
       var myObject: { word: string, proposition: string, sim: any } = { word: element, proposition: "", sim: 0 }
       for (let i = 0; i < this.mappingService.reqValue.length; i++) {
@@ -160,19 +140,12 @@ export class MappingComponent implements OnInit {
 
 
   confirmChoise(obj, selectedhahah, index) {
-    console.log(obj);
-
     if (selectedhahah != 'other') {
       this.founded[0].push(selectedhahah);
       this.mappedWord.push({ myInput: obj, correctValue: selectedhahah });
     }
-
     else {
       this.mappedWord.push({ myInput: obj, correctValue: selectedhahah });
-      console.log("my mappedWord");
-
-      console.log(this.mappedWord);
-
     }
 
     this.possibleChoices = this.mappingService.arrayRemove(this.possibleChoices, selectedhahah)
@@ -184,7 +157,7 @@ export class MappingComponent implements OnInit {
     else {
       this.notFoundFuzzy.splice(index, 1)
     }
-    
+
     this.fileClean = this.reqValue.length == this.founded[0].length
 
 
@@ -192,10 +165,6 @@ export class MappingComponent implements OnInit {
 
   sendData() {
     let tab = []
-    let data = {
-      data1: this.mappedWord,
-      data2: this.mappingService.allValue
-    }
     this.mappingService.allValue.forEach(element => {
       for (const [key, value] of Object.entries(element[0])) {
         this.mappedWord.forEach(word => {
@@ -206,9 +175,11 @@ export class MappingComponent implements OnInit {
       }
       tab.push(element)
     });
-    console.log(tab);
+    this.fileService.postFile(tab).subscribe((res: { message }) => {
+      this.Lienfichier = res.message
+      this.showButton = true
 
-    this.fileService.postFile(tab).subscribe(res => { this.Lienfichier = res }
+    }
     )
     this.ConfirmClicked = false
   }

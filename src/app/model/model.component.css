@@ -3,7 +3,7 @@
    justify-content: space-around;
    /* width: 100px; */
    align-items: center;
-   background-color:#b4cce6;
+   background-color:#ffffff;
    margin: 0;
    justify-content: center;
 }
@@ -15,12 +15,14 @@
     padding: 15px;
     border-radius: 50%;
     border:unset;    
+    background-color:#0d7cf3 ;
+
 }
 #plus{
-    color:#b4cce6 ;
+    color:#ffffff ;
 }
 .blue-col{
-    background-color:#b4cce6 ;
+    background-color:#ffffff ;
 }
 #first-part{
     border-bottom-left-radius: 50px ;
@@ -31,15 +33,19 @@
     border-top-right-radius: 50px ;
 }
 #input{
-    border:#b4cce6 ;    
-    background-color:#b4cce6  ;
+    border:#ffffff ;    
+    background-color:#ffffff  ;
     width:300px;
 }
 #update-input{
     border:unset;    
-    background-color:#e8eaec ;
+    background-color:#ffffff ;
     width:180px;
 }
-#delete{
+/* #delete{
     color: rgb(255, 230, 7);
+} */
+.center
+{
+ margin-top: 5% ;
 }
