@@ -1,22 +1,25 @@
-<div class="container">
-  <h4 >{{singleUser.LastName}} {{singleUser.FirstName}} details :</h4>
-  <br>
-  
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Info</th>
-        <th scope="col">Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of singleUser | keyvalue">
-        <td >{{item.key}}</td>
-        <td >{{item.value}}</td>
-      </tr>
-  
-    </tbody>
-  
-  </table>
+<div class="container center">
+  <div class="offset-1 col-md-10">
+    <h4 >{{singleUser.LastName}} {{singleUser.FirstName}} details :</h4>
+    <br>
+    
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Info</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of singleUser | keyvalue">
+          <td >{{item.key}}</td>
+          <td >{{item.value}}</td>
+        </tr>
+    
+      </tbody>
+    
+    </table>
+  </div>
+
 </div>
 
